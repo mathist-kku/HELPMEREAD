@@ -96,7 +96,7 @@ var N=[
 ];
 var SEED=JSON.stringify(N),PAL=['#0f766e','#5b3a8c','#b4532a','#1d4e89','#8a3b5f','#4d6b1f'];
 try{var sv=JSON.parse(localStorage.getItem('tn')||'null');if(sv&&sv.length!==undefined)N=sv}catch(e){}
-(function(){var sd=JSON.parse(SEED);try{if(!localStorage.getItem('tv2')){sd.forEach(function(x){if(['cafe','dorm','sea','exam','cat','palace'].indexOf(x.id)>-1&&!N.some(function(n){return n.id===x.id}))N.push(x)});localStorage.setItem('tv2','1');localStorage.setItem('tn',JSON.stringify(N))}}catch(e){}N.forEach(function(n){if(n.v==null){var o=sd.filter(function(x){return x.id===n.id})[0];n.v=o?o.v:0;n.f=o?o.f:0}})})();
+(function(){var sd=JSON.parse(SEED);try{if(!localStorage.getItem('tv2')){sd.forEach(function(x){if(['cafe','dorm','sea','exam','cat','palace'].indexOf(x.id)>-1&&!N.some(function(n){return n.id===x.id}))N.push(x)});localStorage.setItem('tv2','1');localStorage.setItem('tn',JSON.stringify(N))}}catch(e){}N.forEach(function(n){if(n.v==null){var o=sd.filter(function(x){return x.id===n.id})[0];n.v=o?o.v:0;n.f=o?o.f:0}var o2=sd.filter(function(x){return x.id===n.id})[0];if(o2&&n.ch.length<o2.ch.length){for(var k=n.ch.length;k<o2.ch.length;k++)n.ch.push(o2.ch[k]);saveN()}})})();
 function saveN(){try{localStorage.setItem('tn',JSON.stringify(N))}catch(e){}}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 var SP=['ยอดนิยม','ผู้ติดตามมากสุด'],BG=['แฟนตาซี','ไซไฟ','สืบสวน','โรแมนติก','สยองขวัญ','ผจญภัย','ดราม่า','ตลก','ระทึกขวัญ','ย้อนยุค'];
@@ -106,7 +106,8 @@ function fmt(x){x=x||0;return x>=1000?(x/1000).toFixed(1).replace('.0','')+'K':x
 function view(i){N[i].v=(N[i].v||0)+1;saveN()}
 function fc(){return N.filter(function(n){return P['fol_'+n.id]}).length}
 function fol(){var n=N[S.n],k='fol_'+n.id;if(P[k]){delete P[k];n.f=Math.max(0,(n.f||0)-1)}else{P[k]=1;n.f=(n.f||0)+1}save();saveN();render()}
-function add(){var v=function(k){return document.getElementById(k).value.trim()},t=v('f_t'),x=v('f_x');if(!t||!x){document.getElementById('er').textContent='กรุณากรอกชื่อเรื่องและเนื้อหาตอนที่ 1';return}N.push({v:0,f:0,id:'u'+Date.now(),t:t,a:v('f_a')||'ไม่ระบุ',g:v('f_g')||'อื่น ๆ',c:PAL[N.length%PAL.length],d:v('f_d'),ch:[[v('f_c')||'ตอนที่ 1',x]]});saveN();S.g='ทั้งหมด';S.q='';go('home')}
+function add(){var v=function(k){return document.getElementById(k).value.trim()},t=v('f_t'),x=v('f_x');if(!t||!x){document.getElementById('er').textContent='กรุณากรอกชื่อเรื่องและเนื้อหาตอนที่ 1';return}N.push({v:0,f:0,id:'u'+Date.now(),t:t,a:v('f_a')||'ไม่ระบุ',g:v('f_g')||'อื่น ๆ',c:PAL[N.length%PAL.length],d:v('f_d'),ch:[[v('f_c'),x]]});saveN();S.g='ทั้งหมด';S.q='';go('home')}
+function addch(){var n=N[S.n],c=document.getElementById('f_c').value.trim(),x=document.getElementById('f_x').value.trim();if(!x){document.getElementById('er').textContent='กรุณากรอกเนื้อหาตอน';return}n.ch.push([c,x]);saveN();go('novel')}
 function del(){var b=N[S.n];N.splice(S.n,1);if(P.last===b.id)delete P.last;delete P[b.id];saveN();save();go('home')}
 function reset(){N=JSON.parse(SEED);saveN();S.g='ทั้งหมด';S.m=0;render()}
 var S={v:'home',n:0,c:0,q:'',g:'ทั้งหมด',d:0},P={},F=18,app=document.getElementById('app'),bar=document.getElementById('bar');
@@ -130,11 +131,15 @@ app.innerHTML=h;list();document.getElementById('q').oninput=function(e){S.q=e.ta
 }else if(S.v==='novel'){
 var n=N[S.n],c=P[n.id];
 h='<header class="top"><button class="ic" onclick="go(\'home\')">← กลับ</button></header>'+card(S.n)+'<button class="nav pri ic" style="width:100%;background:var(--acc);color:var(--on)" onclick="go(\'read\','+S.n+','+(c||0)+')">'+(c==null?'เริ่มอ่านตอนที่ 1':'อ่านต่อตอนที่ '+(c+1))+'</button><button class="btn" style="width:100%;margin-top:8px" onclick="fol()">'+(P['fol_'+n.id]?'กำลังติดตาม ✓':'+ ติดตามนิยายเรื่องนี้')+'</button><h2>สารบัญ</h2>'+n.ch.map(function(x,i){return '<button class="ch'+(c!=null&&i<c?' done':'')+'" onclick="go(\'read\','+S.n+','+i+')"><span>ตอนที่ '+(i+1)+' '+esc(x[0])+'</span><span class="mut">'+Math.max(1,Math.round(x[1].length/700))+' นาที</span></button>'}).join('');
-h+=S.d?'<p class="err">ลบ “'+esc(n.t)+'” ถาวรใช่ไหม</p><div class="row"><button class="btn dng" onclick="del()">ยืนยันลบ</button><button class="btn" onclick="S.d=0;render()">ยกเลิก</button></div>':'<div class="row"><button class="btn dng" onclick="S.d=1;render()">ลบนิยายเรื่องนี้</button></div>';
+h+='<div class="row"><button class="btn" onclick="go(\'addch\')">+ เพิ่มตอนใหม่</button></div>';h+=S.d?'<p class="err">ลบ “'+esc(n.t)+'” ถาวรใช่ไหม</p><div class="row"><button class="btn dng" onclick="del()">ยืนยันลบ</button><button class="btn" onclick="S.d=0;render()">ยกเลิก</button></div>':'<div class="row"><button class="btn dng" onclick="S.d=1;render()">ลบนิยายเรื่องนี้</button></div>';
 app.innerHTML=h;
 }else if(S.v==='shelf'){
 var fi=[];N.forEach(function(n,i){if(P['fol_'+n.id])fi.push(i)});
 h='<header class="top"><button class="ic" onclick="go(\'home\')">← กลับ</button></header><h2>ชั้นนิยายที่ติดตาม</h2>'+(fi.length?fi.map(function(i){return card(i)}).join(''):'<p class="mut">ยังไม่ได้ติดตามนิยายเรื่องใด เปิดหน้านิยายแล้วกด “+ ติดตามนิยายเรื่องนี้”</p>');
+app.innerHTML=h;
+}else if(S.v==='addch'){
+var n=N[S.n];
+h='<header class="top"><button class="ic" onclick="go(\'novel\')">← ยกเลิก</button></header><h2>เพิ่มตอนใหม่ใน “'+esc(n.t)+'”</h2><p class="mut">จะเป็นตอนที่ '+(n.ch.length+1)+'</p><label class="f" for="f_c">ชื่อตอน</label><input class="in" id="f_c" maxlength="80"><label class="f" for="f_x">เนื้อหาตอน *</label><textarea class="in" id="f_x"></textarea><p class="err" id="er" role="alert"></p><div class="row"><button class="btn pri" onclick="addch()">บันทึกตอน</button></div>';
 app.innerHTML=h;
 }else if(S.v==='add'){
 h='<header class="top"><button class="ic" onclick="go(\'home\')">← ยกเลิก</button></header><h2>เพิ่มนิยายใหม่</h2><label class="f" for="f_t">ชื่อเรื่อง *</label><input class="in" id="f_t" maxlength="80"><label class="f" for="f_a">ชื่อนักเขียน</label><input class="in" id="f_a" maxlength="60"><label class="f" for="f_g">หมวด</label><input class="in" id="f_g" list="gs" maxlength="30" placeholder="เช่น แฟนตาซี"><datalist id="gs">'+gg().map(function(g){return '<option value="'+esc(g)+'">'}).join('')+'</datalist><label class="f" for="f_d">เรื่องย่อ</label><input class="in" id="f_d" maxlength="200"><label class="f" for="f_c">ชื่อตอนที่ 1</label><input class="in" id="f_c" maxlength="80"><label class="f" for="f_x">เนื้อหาตอนที่ 1 *</label><textarea class="in" id="f_x"></textarea><p class="err" id="er" role="alert"></p><div class="row"><button class="btn pri" onclick="add()">บันทึกนิยาย</button></div>';
