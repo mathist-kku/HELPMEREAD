@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Novel – อ่านนิยายออนไลน์</title>
+<title>HELPMEREAD</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600&family=Noto+Serif+Thai:wght@400;600&family=Sarabun:wght@400;600&family=Kanit:wght@400;500&family=Mali:wght@400;600&family=Niramit:wght@400;600&display=swap">
 <style>
 :root{--bg:#eef2f1;--card:#fff;--ink:#1c2733;--mut:#5b6b78;--acc:#0f766e;--on:#fff;--hi:#f2b134;--line:#d5dedc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -104,7 +104,8 @@ var N=[
 ];
 var SEED=JSON.stringify(N),PAL=['#0f766e','#5b3a8c','#b4532a','#1d4e89','#8a3b5f','#4d6b1f'];
 try{var sv=JSON.parse(localStorage.getItem('tn')||'null');if(sv&&sv.length!==undefined)N=sv}catch(e){}
-(function(){var sd=JSON.parse(SEED);try{if(!localStorage.getItem('tv2')){sd.forEach(function(x){if(['cafe','dorm','sea','exam','cat','palace'].indexOf(x.id)>-1&&!N.some(function(n){return n.id===x.id}))N.push(x)});localStorage.setItem('tv2','1');localStorage.setItem('tn',JSON.stringify(N))}}catch(e){}N.forEach(function(n){if(n.v==null){var o=sd.filter(function(x){return x.id===n.id})[0];n.v=o?o.v:0;n.f=o?o.f:0}})})();
+var SEEDV=3;
+(function(){var sd=JSON.parse(SEED);try{var cur=+localStorage.getItem('tsv')||0;if(cur<SEEDV){sd.forEach(function(x){var o=N.filter(function(n){return n.id===x.id})[0];if(!o){N.push(x)}else{var v=o.v,f=o.f;for(var k in x)o[k]=x[k];o.v=v;o.f=f}});localStorage.setItem('tsv',String(SEEDV));localStorage.setItem('tn',JSON.stringify(N))}}catch(e){}N.forEach(function(n){if(n.v==null){var o=sd.filter(function(x){return x.id===n.id})[0];n.v=o?o.v:0;n.f=o?o.f:0}})})();
 function saveN(){try{localStorage.setItem('tn',JSON.stringify(N))}catch(e){}}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 var SP=['ยอดนิยม','ผู้ติดตามมากสุด'],BG=['แฟนตาซี','ไซไฟ','สืบสวน','โรแมนติก','สยองขวัญ','ผจญภัย','ดราม่า','ตลก','ระทึกขวัญ','ย้อนยุค'];
@@ -144,7 +145,7 @@ function render(){render0();arc();sync()}
 function render0(){
 var h='';bar.style.width='0';if(gl().indexOf(S.g)<0)S.g='ทั้งหมด';
 if(S.v==='home'){
-h='<header class="top" style="position:relative"><h1>Novel</h1><span style="display:flex;gap:8px">'+pbtn()+'<button class="ic" onclick="S.m=!S.m;render()" aria-expanded="'+(!!S.m)+'" aria-label="เมนูฟีเจอร์">☰ เมนู</button></span>'+(S.m?'<div class="menu"><button onclick="go(\'shelf\')">ชั้นนิยายที่ติดตาม ('+fc()+')</button><button onclick="go(\'add\')">+ เพิ่มนิยาย</button><button onclick="theme()">สลับโหมดมืด/สว่าง</button><button onclick="reset()">คืนค่านิยายตัวอย่าง</button></div>':'')+'</header>'+pnl();
+h='<header class="top" style="position:relative"><h1>HELPMEREAD</h1><span style="display:flex;gap:8px">'+pbtn()+'<button class="ic" onclick="S.m=!S.m;render()" aria-expanded="'+(!!S.m)+'" aria-label="เมนูฟีเจอร์">☰ เมนู</button></span>'+(S.m?'<div class="menu"><button onclick="go(\'shelf\')">ชั้นนิยายที่ติดตาม ('+fc()+')</button><button onclick="go(\'add\')">+ เพิ่มนิยาย</button><button onclick="theme()">สลับโหมดมืด/สว่าง</button><button onclick="reset()">คืนค่านิยายตัวอย่าง</button></div>':'')+'</header>'+pnl();
 var l=N.map(function(n){return n.id}).indexOf(P.last);
 if(l>-1){var c=P[P.last]||0;h+='<h2>อ่านต่อ</h2><button class="card cont" onclick="go(\'read\','+l+','+c+')"><span class="cover" style="background:'+N[l].c+'">'+esc(N[l].t[0]||'?')+'</span><span><b>'+esc(N[l].t)+'</b><span class="mut">ตอนที่ '+(c+1)+' · '+esc(N[l].ch[c][0])+'</span></span></button>'}
 h+='<input class="search" id="q" type="search" placeholder="ค้นหาชื่อเรื่องหรือนักเขียน" aria-label="ค้นหา" value="'+esc(S.q)+'"><div class="chips">'+gl().map(function(g,i){return '<button class="chip" aria-pressed="'+(g===S.g)+'" onclick="S.g=gl()['+i+'];render()">'+esc(g)+'</button>'}).join('')+'</div><h2 id="hd"></h2><div id="list"></div><p class="note">เนื้อหาทั้งหมดเป็นตัวอย่างที่เขียนขึ้นใหม่เพื่อใช้ทดสอบเว็บ ไม่ใช่งานของนักเขียนจริง ตัวเลขวิวและผู้ติดตามเป็นค่าตัวอย่าง</p>';
