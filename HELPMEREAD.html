@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Novel – อ่านนิยายออนไลน์</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600&family=Noto+Serif+Thai:wght@400;600&family=Sarabun:wght@400;600&family=Kanit:wght@400;500&family=Mali:wght@400;600&family=Niramit:wght@400;600&display=swap">
+<style>
+:root{--bg:#eef2f1;--card:#fff;--ink:#1c2733;--mut:#5b6b78;--acc:#0f766e;--on:#fff;--hi:#f2b134;--line:#d5dedc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141c22;--card:#1c2830;--ink:#e6edf0;--mut:#9db0ba;--acc:#4fd1c0;--on:#0b1418;--line:#2c3b45}}
+:root[data-theme="dark"]{--bg:#141c22;--card:#1c2830;--ink:#e6edf0;--mut:#9db0ba;--acc:#4fd1c0;--on:#0b1418;--line:#2c3b45}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-size:calc(var(--fs,18px)*.89);line-height:1.6;font-family:var(--ff,Prompt),system-ui,sans-serif}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0 12px}
+h1{font-size:1.625em;margin:0;font-weight:600}
+h2{font-size:1.125em;margin:24px 0 10px;font-weight:600}
+.ic{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-height:40px}
+.search{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0}
+.chip{white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px}
+.chip[aria-pressed="true"]{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.card{display:flex;gap:14px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:0 0 10px}
+.cover{flex:none;width:64px;height:88px;border-radius:6px;display:grid;place-items:center;color:#fff;font:600 34px 'Noto Serif Thai',serif}
+.card b{display:block;font-weight:600}
+.mut{color:var(--mut);font-size:.875em}
+.cont{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.cont .mut{color:inherit;opacity:.85}
+.bar{height:4px;background:var(--hi);width:0;position:fixed;top:0;left:0;z-index:5}
+.read{font-family:var(--ff,'Noto Serif Thai'),serif;line-height:1.95;font-size:var(--fs,18px)}
+.read h2{font-family:var(--ff,Prompt),sans-serif;font-size:1.1em}
+.read p{margin:0 0 1.1em}
+.nav{display:flex;gap:10px;margin:24px 0}
+.nav button{flex:1;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card)}
+.nav .pri{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.nav button:disabled{opacity:.4;cursor:default}
+.tools{position:sticky;top:env(safe-area-inset-top,0px);display:flex;gap:6px;align-items:center;background:var(--bg);padding:8px 0;z-index:4}
+.tools .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tools .ff{max-width:112px;padding:8px 6px;background:var(--card);border:1px solid var(--line);border-radius:10px;min-height:40px}
+.ch{display:flex;justify-content:space-between;width:100%;text-align:left;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:8px}
+.ch.done{color:var(--mut)}
+.cp{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 12px}
+.cp[hidden]{display:none}
+.cp .ff{max-width:none}
+.fsv{min-width:2.4em;text-align:center;font-weight:600}
+.sw{display:flex;flex-wrap:wrap;gap:8px}
+.sw button{width:44px;height:44px;border-radius:50%;border:2px solid var(--line);font:600 18px 'Noto Serif Thai',serif;padding:0}
+.sw button[aria-pressed="true"]{border-color:var(--hi);box-shadow:0 0 0 2px var(--hi)}
+.cpr{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.cpr label{display:flex;align-items:center;gap:8px}
+.cpr input[type=color]{width:44px;height:36px;padding:0;border:1px solid var(--line);border-radius:8px;background:none}
+.note{font-size:.8125em;color:var(--mut);margin-top:24px}
+@media (prefers-reduced-motion:no-preference){.card:active,.ch:active{transform:scale(.99)}}
+.f{display:block;margin:12px 0 4px;font-weight:500}
+.in{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card)}
+textarea.in{min-height:180px;font-family:var(--ff,'Noto Serif Thai'),serif;line-height:1.8}
+.btn{padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card)}
+.btn.pri{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.btn.dng{border-color:#e5604d;color:#e5604d}
+.row{display:flex;gap:10px;margin-top:16px}.row .btn{flex:1}
+.err{color:#e5604d;font-size:.875em;margin-top:8px}
+.menu{position:absolute;right:0;top:100%;z-index:6;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:230px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.menu button{display:block;width:100%;text-align:left;padding:10px 12px;border:0;background:none;border-radius:8px}
+.menu button:hover{background:var(--bg)}
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<div class="wrap" id="app"></div>
+<script>
+var N=[
+{id:'tea',v:12400,f:3200,t:'ร้านชาเที่ยงคืน',a:'ใบชา',g:'แฟนตาซี',c:'#0f766e',d:'ร้านเล็กหลังตลาดเก่าที่เปิดเฉพาะคืนฝนตก และเสิร์ฟชาที่ตรงกับใจลูกค้า',ch:[
+['ป้ายไฟดวงเดียว','ซอยหลังตลาดเก่าเงียบลงทุกคืนหลังสี่ทุ่ม เหลือเพียงป้ายไฟดวงเดียวที่ยังกะพริบอยู่หน้าร้านเล็ก ๆ ชื่อ “ชาเที่ยงคืน”\nพิมพ์ใจเปิดประตูเข้าไปทั้งที่ตัวเปียกฝนไปครึ่งหนึ่ง เธอไม่ได้ตั้งใจจะซื้ออะไร แค่อยากหลบฝนสักครู่ก่อนกลับหอ\n“นั่งตรงไหนก็ได้ค่ะ” เสียงหญิงชราดังมาจากหลังเคาน์เตอร์ “วันนี้มีชาให้เลือกแค่ชนิดเดียว”\n“ชนิดอะไรคะ”\n“ชนิดที่เธอกำลังต้องการ”\nพิมพ์ใจขมวดคิ้ว แต่ยังไม่ทันถามต่อ ถ้วยชาใบเล็กก็ถูกวางลงตรงหน้า กลิ่นหอมอ่อน ๆ ลอยขึ้นมา เป็นกลิ่นเดียวกับห้องครัวของยายที่เธอไม่ได้กลับไปนานหลายปี'],
+['ถ้วยที่สอง','เธอจิบชาถ้วยแรกหมดโดยไม่รู้ตัว ความอุ่นแผ่จากอกไปถึงปลายนิ้ว เหมือนมีใครวางมือลงบนไหล่เบา ๆ\n“ขออีกถ้วยได้ไหมคะ”\n“ได้สิ แต่ถ้วยที่สองต้องแลกด้วยเรื่องเล่าหนึ่งเรื่อง” หญิงชราบอกพลางยิ้มมุมปาก “เรื่องที่เธอไม่เคยเล่าให้ใครฟัง”\nพิมพ์ใจเงียบไปนาน ฝนนอกร้านซาลงเป็นเสียงกระซิบ ก่อนที่เธอจะเริ่มพูดถึงจดหมายฉบับหนึ่งที่เขียนไว้ตั้งแต่ปีที่แล้ว และยังไม่กล้าส่งถึงใคร'],
+['ลูกค้าคนสุดท้าย','เมื่อเรื่องเล่าจบ ชาถ้วยที่สองก็อุ่นพอดี พิมพ์ใจเงยหน้าขึ้นและเห็นว่าในร้านมีแต่เธอคนเดียว ไม่มีหญิงชรา ไม่มีเคาน์เตอร์ มีเพียงโต๊ะไม้ตัวเก่ากับป้ายเล็ก ๆ วางอยู่บนโต๊ะ\n“ขอบคุณที่มาเป็นลูกค้าคนสุดท้ายของคืนนี้ พรุ่งนี้ร้านจะไปอยู่ในซอยของคนอื่น”\nเธอเดินออกมาเมื่อฝนหยุด ป้ายไฟหน้าร้านดับลงพร้อมกับที่โทรศัพท์สั่นขึ้นมา เป็นข้อความจากคนที่เธอตั้งใจเขียนจดหมายถึง']]},
+{id:'star',v:8300,f:5100,t:'จดหมายจากดาวดวงที่เจ็ด',a:'ปลายฟ้า',g:'ไซไฟ',c:'#5b3a8c',d:'นักดาราศาสตร์รุ่นเยาว์ได้รับสัญญาณที่เขียนเป็นภาษาไทยจากที่ไกลเกินกว่าจะเป็นไปได้',ch:[
+['สัญญาณ 7.3 เมกะเฮิรตซ์','หอดูดาวบนดอยเงียบผิดปกติตั้งแต่หัวค่ำ กรวินท์นั่งตรวจข้อมูลคลื่นวิทยุที่เก็บมาตลอดสัปดาห์ด้วยความง่วง จนกระทั่งกราฟเส้นหนึ่งสะดุดตาเขา\nมันไม่ใช่สัญญาณรบกวน ไม่ใช่ดาวเคราะห์น้อย และไม่ใช่ดาวเทียมของประเทศใด ความถี่ซ้ำเป็นจังหวะ สั้น ยาว สั้น เหมือนใครสักคนกำลังเคาะประตู\nเขาลองแปลงรหัสตามตารางง่าย ๆ ที่เรียนมาตอนปีหนึ่ง แล้วต้องกลั้นหายใจ เพราะตัวอักษรที่ปรากฏขึ้นบนจอคือคำว่า “สวัสดี”'],
+['คำตอบที่ส่งกลับไป','ศาสตราจารย์บอกให้เขาอย่าเพิ่งตอบ แต่กรวินท์ไม่เคยเป็นคนที่รอได้ เขาพิมพ์ข้อความสั้น ๆ ลงในระบบส่งสัญญาณสำรองเมื่อเที่ยงคืน\n“คุณคือใคร”\nสามชั่วโมงต่อมา คำตอบก็มาถึงพร้อมแสงเหนือที่ปรากฏผิดที่ผิดเวลาเหนือยอดดอย “เราคือคนที่เคยเป็นเธอ ในอีกเจ็ดสิบปีข้างหน้า”']]},
+{id:'mkt',v:5100,f:1800,t:'ตลาดน้ำหลังฝนตก',a:'ธารทิพย์',g:'สืบสวน',c:'#b4532a',d:'พ่อค้าขายขนมหายไปจากตลาดน้ำ ทิ้งไว้เพียงเรือเปล่าและโน้ตเปียกน้ำหนึ่งใบ',ch:[
+['เรือลำที่หก','ตลาดน้ำเช้าวันนั้นคึกคักเหมือนทุกวัน ยกเว้นเรือลำที่หกจากท่าน้ำที่จอดนิ่งอยู่โดยไม่มีคนพาย ในเรือมีเตาถ่านยังอุ่นอยู่ และขนมตาลหนึ่งถาดที่ยังไม่มีใครแตะ\nสิริน นักข่าวฝึกหัด ก้มลงเก็บกระดาษแผ่นเล็กที่เปียกน้ำจนหมึกเลอะ เหลือเพียงตัวเลขสามหลักกับคำว่า “อย่าไว้ใจ”\n“ลุงสมชายไม่เคยทิ้งเตาไว้เฉย ๆ หรอก” แม่ค้าข้างเรือกระซิบ “เว้นแต่จะมีอะไรน่ากลัวกว่าไฟ”'],
+['ตัวเลขสามหลัก','สิรินใช้เวลาทั้งบ่ายเดินถามคนในตลาด และพบว่าไม่มีใครรู้จักตัวเลขนั้น จนกระทั่งเด็กชายคนหนึ่งชี้ไปที่ตู้ไปรษณีย์เก่าริมท่าน้ำ “เลขที่ช่องเก็บของค่ะพี่ ตู้นั้นไม่มีใครเปิดมาสิบปีแล้ว”\nกุญแจไม่อยู่ในมือใคร แต่สนิมที่เกาะอยู่บนบานพับกลับมีรอยขูดใหม่ ๆ เธอจึงรู้ว่ามีคนมาถึงที่นี่ก่อนเธอแล้ว']]},
+{id:'cafe',v:9800,f:6400,t:'จดหมายถึงคนที่ยังไม่รู้จัก',a:'ลมหวน',g:'โรแมนติก',c:'#8a3b5f',d:'สองคนแลกจดหมายผ่านตู้ไปรษณีย์ริมทางรถไฟ โดยไม่รู้ว่าอีกฝ่ายคือใคร',ch:[
+['ตู้ไปรษณีย์สีแดง','ตู้ไปรษณีย์สีแดงหน้าสถานีรถไฟเก่าไม่มีใครใช้มานาน จนวันที่ใบบัวเจอซองสีครีมโผล่ออกมาจากช่องรับจดหมาย\nข้างในเขียนสั้น ๆ ว่า “ถ้าคุณอ่านอยู่ ขอให้วันนี้เป็นวันที่ดี” ลายมือเรียบร้อยและไม่มีชื่อผู้ส่ง\nเธอยิ้มโดยไม่รู้ตัว แล้วหยิบปากกาเขียนตอบกลับไปหนึ่งบรรทัด'],
+['คำตอบที่ตกหล่น','สามวันต่อมา ซองใบใหม่ก็มาถึงพร้อมคำถามว่าเธอชอบฟังเสียงอะไรตอนฝนตก ใบบัวตอบว่าเสียงรถไฟไกล ๆ\nจดหมายทุกฉบับเริ่มยาวขึ้น จนวันหนึ่งอีกฝ่ายเขียนว่า “พรุ่งนี้ผมจะยืนรอที่ชานชาลา ถ้าคุณไม่อยากพบ ก็ไม่เป็นไร”']]},
+{id:'dorm',v:15200,f:4100,t:'ชั้นสี่ห้อง 404',a:'เงาจาง',g:'สยองขวัญ',c:'#2f3e46',d:'หอพักเก่าที่ชั้นสี่ไม่มีทางขึ้น แต่ทุกคืนมีเสียงเคาะประตูห้องที่ไม่มีอยู่จริง',ch:[
+['เสียงเคาะตอนตีสอง','ทุกคนในหอบอกว่าชั้นสี่ปิดตายมานานแล้ว บันไดถูกกั้นด้วยแผ่นเหล็ก แต่ภูมิคิดว่าเขาได้ยินเสียงเคาะประตูทุกคืนตอนตีสอง\nสามครั้ง ช้า ๆ แล้วเงียบ เหมือนใครสักคนรออยู่ตรงนั้นมานาน\nคืนนี้เสียงเคาะดังมาจากประตูห้องของเขาเอง'],
+['ประตูบานที่ไม่มี','ภูมิตัดสินใจเปิดประตู แต่ที่หน้าห้องมีแค่ทางเดินมืดกับป้ายเลขห้อง 404 ที่ไม่เคยมีอยู่มาก่อน\nกลิ่นกำยานจาง ๆ ลอยมาจากปลายทาง และเสียงกระซิบบอกว่า “ขอบคุณที่เปิดให้เสียที”']]},
+{id:'sea',v:7200,f:2600,t:'เข็มทิศของกัปตันเด็ก',a:'คลื่นใต้',g:'ผจญภัย',c:'#1d4e89',d:'เด็กชายได้เข็มทิศเก่าที่ไม่ชี้ทิศเหนือ แต่ชี้ไปหาสิ่งที่เขาต้องการที่สุด',ch:[
+['ของขวัญจากท่าเรือ','ชายแก่ที่ท่าเรือยื่นเข็มทิศทองเหลืองให้ทะเลโดยไม่พูดอะไร เข็มของมันหมุนติ้วไม่ยอมหยุดที่ทิศเหนือ\nจนเขาเผลอนึกถึงพ่อที่ออกทะเลไปเมื่อสามปีก่อน เข็มก็นิ่งลงและชี้ออกไปกลางทะเล\n“ไปสิ” ชายแก่บอก “แต่ต้องกลับมาก่อนน้ำขึ้น”'],
+['เกาะที่ไม่อยู่ในแผนที่','ทะเลพายเรือลำเล็กตามเข็มไปทั้งวัน จนเห็นเกาะหินแหลมที่ไม่มีในแผนที่ผุดขึ้นกลางหมอก\nบนชายหาดมีรอยเท้าคนใหญ่หนึ่งชุด และเชือกผูกเรือที่เขาจำได้ทันที เพราะพ่อเป็นคนผูกปมแบบนั้น']]},
+{id:'exam',v:6100,f:3900,t:'วันสุดท้ายก่อนสอบ',a:'ปากกาแดง',g:'ดราม่า',c:'#b4532a',d:'นักศึกษาสี่คนติวหนังสือคืนเดียว และแต่ละคนมีความลับที่ไม่กล้าบอกกัน',ch:[
+['ติวหนังสือคืนเดียว','ห้องสมุดปิดตอนสี่ทุ่ม สี่คนเลยย้ายมานั่งติวกันที่ห้องพักของแพร เธอวางกาแฟสี่แก้วแล้วบอกว่าคืนนี้ห้ามใครหลับ\nแต่ไม่มีใครเปิดหนังสือ เพราะทุกคนเงียบผิดปกติ และต่างแอบมองโทรศัพท์ของตัวเอง\nข้อความในเครื่องของแต่ละคนล้วนเป็นเรื่องที่ไม่อยากให้เพื่อนเห็น'],
+['คำสารภาพตีหนึ่ง','ตีหนึ่ง พิมพ์เป็นคนแรกที่วางโทรศัพท์ลง “เราคิดจะลาออก” เขาพูดเสียงเบา ทุกคนหันมามองพร้อมกัน\nแล้วเสียงหัวเราะเจื่อน ๆ ของอีกสามคนก็ดังขึ้น เพราะพวกเขามีเรื่องเดียวกันจะบอก']]},
+{id:'cat',v:11000,f:7300,t:'แมวเจ้าของคอนโด',a:'เหมียวนุ่ม',g:'ตลก',c:'#4d6b1f',d:'แมวอ้วนตัวหนึ่งประกาศตัวเป็นเจ้าของคอนโด และลูกบ้านทุกคนต้องจ่ายค่าผ่านทางเป็นขนม',ch:[
+['ประกาศิตจากชั้นหนึ่ง','ลูกบ้านทุกคนสังเกตว่าตั้งแต่เช้า แมวส้มตัวอ้วนนอนขวางประตูหน้าตึกและไม่ยอมขยับให้ใครเข้า\nจนป้าแม่บ้านต้องยอมควักปลาแห้งออกมาจากกระเป๋า มันจึงลุกเดินอย่างสง่างามพร้อมมองทุกคนราวกับเป็นเจ้านาย\nคืนนั้นในกลุ่มแชตของคอนโด มีคนตั้งชื่อมันว่า “ท่านเจ้าคุณ”'],
+['ภาษีปลาทู','เช้าวันต่อมา มีป้ายกระดาษแปะที่ลิฟต์ว่า “ผู้ใดผ่านชั้นหนึ่ง ต้องนำปลาทูมาสักตัว” ไม่มีใครรู้ว่าใครเขียน\nแต่ทุกคนพากันทำตามอย่างว่าง่าย ยกเว้นคุณลุงห้อง 502 ที่แพ้แมวและต้องอ้อมไปใช้บันไดหนีไฟทุกวัน']]},
+{id:'palace',v:4300,f:2100,t:'หมึกแดงในหอหลวง',a:'จันทร์เพ็ญ',g:'ย้อนยุค',c:'#7a4b1e',d:'เสมียนสาวในหอหลวงพบบันทึกลับที่มีชื่อของเธออยู่ในหน้าสุดท้าย',ch:[
+['ม้วนบันทึกเล่มที่เก้า','นางเสมียนกานดาทำหน้าที่คัดลอกบันทึกในหอหลวงมาสามปี ไม่เคยมีวันไหนที่ม้วนกระดาษหนักเท่าวันนี้\nเล่มที่เก้าถูกเก็บไว้ในหีบล็อกกุญแจ แต่คืนนี้หีบกลับแง้มอยู่เล็กน้อย\nเธอเปิดอ่านหน้าสุดท้ายและต้องกลั้นหายใจ เพราะชื่อที่เขียนด้วยหมึกแดงนั้นคือชื่อของเธอเอง'],
+['คำสั่งเงียบ','รุ่งเช้า ขุนนางผู้ดูแลหอเรียกเธอเข้าพบโดยไม่บอกเหตุผล บนโต๊ะมีม้วนกระดาษม้วนเดียวกันวางอยู่\n“เจ้าอ่านมันแล้วสินะ” เขากล่าวเรียบ ๆ “ดี งั้นเจ้าก็พร้อมจะรู้ว่า ทำไมชื่อเจ้าถึงอยู่ตรงนั้น”']]}
+];
+var SEED=JSON.stringify(N),PAL=['#0f766e','#5b3a8c','#b4532a','#1d4e89','#8a3b5f','#4d6b1f'];
+try{var sv=JSON.parse(localStorage.getItem('tn')||'null');if(sv&&sv.length!==undefined)N=sv}catch(e){}
+(function(){var sd=JSON.parse(SEED);try{if(!localStorage.getItem('tv2')){sd.forEach(function(x){if(['cafe','dorm','sea','exam','cat','palace'].indexOf(x.id)>-1&&!N.some(function(n){return n.id===x.id}))N.push(x)});localStorage.setItem('tv2','1');localStorage.setItem('tn',JSON.stringify(N))}}catch(e){}N.forEach(function(n){if(n.v==null){var o=sd.filter(function(x){return x.id===n.id})[0];n.v=o?o.v:0;n.f=o?o.f:0}})})();
+function saveN(){try{localStorage.setItem('tn',JSON.stringify(N))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+var SP=['ยอดนิยม','ผู้ติดตามมากสุด'],BG=['แฟนตาซี','ไซไฟ','สืบสวน','โรแมนติก','สยองขวัญ','ผจญภัย','ดราม่า','ตลก','ระทึกขวัญ','ย้อนยุค'];
+function gg(){var a=BG.slice();N.forEach(function(n){if(a.indexOf(n.g)<0)a.push(n.g)});return a}
+function gl(){return ['ทั้งหมด'].concat(SP,gg())}
+function fmt(x){x=x||0;return x>=1000?(x/1000).toFixed(1).replace('.0','')+'K':x}
+function view(i){N[i].v=(N[i].v||0)+1;saveN()}
+function fc(){return N.filter(function(n){return P['fol_'+n.id]}).length}
+function fol(){var n=N[S.n],k='fol_'+n.id;if(P[k]){delete P[k];n.f=Math.max(0,(n.f||0)-1)}else{P[k]=1;n.f=(n.f||0)+1}save();saveN();render()}
+function add(){var v=function(k){return document.getElementById(k).value.trim()},t=v('f_t'),x=v('f_x');if(!t||!x){document.getElementById('er').textContent='กรุณากรอกชื่อเรื่องและเนื้อหาตอนที่ 1';return}N.push({v:0,f:0,id:'u'+Date.now(),t:t,a:v('f_a')||'ไม่ระบุ',g:v('f_g')||'อื่น ๆ',c:PAL[N.length%PAL.length],d:v('f_d'),ch:[[v('f_c')||'ตอนที่ 1',x]]});saveN();S.g='ทั้งหมด';S.q='';go('home')}
+function del(){var b=N[S.n];N.splice(S.n,1);if(P.last===b.id)delete P.last;delete P[b.id];saveN();save();go('home')}
+function reset(){N=JSON.parse(SEED);saveN();S.g='ทั้งหมด';S.m=0;render()}
+var S={v:'home',n:0,c:0,q:'',g:'ทั้งหมด',d:0},P={},F=18,FF='',RC={bg:'',ink:''},GP={'โรแมนติก':['#fde8ee','#4a1f2e','#2a1220','#fbd5e0'],'แฟนตาซี':['#efe9fb','#2f2150','#1a1433','#e1d8fb'],'ไซไฟ':['#e3f1fa','#0f2a3d','#0a1624','#bfe6ff'],'สืบสวน':['#e6e4df','#26272b','#15171c','#cfd3dc'],'สยองขวัญ':['#efe3e1','#3a1212','#140808','#e8c9c4'],'ผจญภัย':['#e4f0dc','#23381c','#101f14','#cfe8c3'],'ดราม่า':['#e6e9f0','#232a3a','#161a26','#d4daea'],'ตลก':['#fff4c9','#4a3a00','#2b2410','#ffe9a0'],'ระทึกขวัญ':['#e8e6e6','#2a1a1a','#0f1115','#f0d0b0'],'ย้อนยุค':['#f3e6cc','#4a3320','#231a10','#ecd9b5']},PRE=[['ตามแนวเรื่อง','',''],['ขาว','#ffffff','#1c2733'],['กระดาษ','#f4ecd8','#433422'],['เขียวอ่อน','#e3efe3','#25402c'],['ฟ้าอ่อน','#e4eef7','#1f3347'],['เทา','#d9dcde','#222222'],['เทาเข้ม','#1c2830','#e6edf0'],['น้ำเงินคืน','#0f1b2d','#c9d6ea'],['อำพัน','#1a1410','#e8c48a'],['ดำ','#000000','#d0d0d0']],FONTS=['Prompt','Noto Serif Thai','Sarabun','Kanit','Mali','Niramit'],app=document.getElementById('app'),bar=document.getElementById('bar');
+try{P=JSON.parse(localStorage.getItem('tp')||'{}');F=+localStorage.getItem('tf')||18;var trc=JSON.parse(localStorage.getItem('trc')||'null');if(trc&&typeof trc==='object')RC={bg:trc.bg||'',ink:trc.ink||''};var tff=localStorage.getItem('tff');if(tff&&FONTS.indexOf(tff)>-1)FF=tff;var th=localStorage.getItem('tt');if(th)document.documentElement.dataset.theme=th}catch(e){}
+function save(){try{localStorage.setItem('tp',JSON.stringify(P));localStorage.setItem('tf',F)}catch(e){}}
+function len(n){return n.ch.reduce(function(a,c){return a+c[1].length},0)}
+function mins(n){return Math.max(1,Math.round(len(n)/700))}
+function card(i,cl){var n=N[i];return '<button class="card '+(cl||'')+'" onclick="go(\'novel\','+i+')"><span class="cover" style="background:'+n.c+'">'+esc(n.t[0]||'?')+'</span><span><b>'+esc(n.t)+'</b><span class="mut">'+esc(n.a)+' · '+esc(n.g)+' · '+n.ch.length+' ตอน · อ่านจบราว '+mins(n)+' นาที</span><br><span class="mut">วิว '+fmt(n.v)+' · ผู้ติดตาม '+fmt(n.f)+'</span><br><span class="mut">'+esc(n.d||'')+'</span></span></button>'}
+function list(){var q=S.q.trim(),h='',ix=[];N.forEach(function(n,i){if((S.g==='ทั้งหมด'||SP.indexOf(S.g)>-1||n.g===S.g)&&(!q||(n.t+n.a).indexOf(q)>-1))ix.push(i)});if(S.g===SP[0])ix.sort(function(a,b){return (N[b].v||0)-(N[a].v||0)});else if(S.g===SP[1])ix.sort(function(a,b){return (N[b].f||0)-(N[a].f||0)});ix.forEach(function(i){h+=card(i)});document.getElementById('hd').textContent=SP.indexOf(S.g)>-1?S.g+(S.g===SP[0]?' (เรียงตามจำนวนวิว)':' (เรียงตามจำนวนผู้ติดตาม)'):'นิยายแนะนำ';document.getElementById('list').innerHTML=h||'<p class="mut">ยังไม่มีเรื่องในหมวดนี้ หรือไม่พบเรื่องที่ตรงกัน ลองล้างคำค้นหรือเลือกหมวดอื่น</p>'}
+function theme(){RC={bg:'',ink:''};var r=document.documentElement,d=r.dataset.theme==='dark'||(!r.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches),t=d?'light':'dark';r.dataset.theme=t;try{localStorage.setItem('tt',t)}catch(e){}arc()}
+function go(v,n,c){if(v==='novel'&&(S.v==='home'||S.v==='add'||S.v==='shelf'))view(n);S.v=v;S.d=0;S.m=0;if(n!=null)S.n=n;if(c!=null)S.c=c;if(v==='read'){var b=N[S.n];P[b.id]=S.c;P.last=b.id;save()}render();scrollTo(0,0)}
+function sf(v){if(v!==''&&FONTS.indexOf(v)<0)return;FF=v;var r=document.documentElement.style;v?r.setProperty('--ff',"'"+v+"'"):r.removeProperty('--ff');try{localStorage.setItem('tff',v)}catch(e){}sync()}
+sf(FF);
+function gpal(){if(S.v!=='novel'&&S.v!=='read')return null;var n=N[S.n],p=n&&GP[n.g];if(!p)return null;var r=document.documentElement,d=r.dataset.theme==='dark'||(!r.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches);return d?[p[2],p[3]]:[p[0],p[1]]}
+function arc(){var r=document.documentElement.style,ks=['--bg','--ink','--card','--mut','--line'],g=gpal(),own=RC.bg&&RC.ink,bg=RC.bg,ink=RC.ink;if(!own&&g){bg=g[0];ink=g[1]}if(bg&&ink){r.setProperty('--bg',bg);r.setProperty('--ink',ink);r.setProperty('--card','color-mix(in srgb,'+bg+' 88%,'+ink+')');r.setProperty('--mut','color-mix(in srgb,'+ink+' 70%,'+bg+')');r.setProperty('--line','color-mix(in srgb,'+ink+' 22%,'+bg+')')}else ks.forEach(function(k){r.removeProperty(k)});try{localStorage.setItem('trc',JSON.stringify(RC))}catch(e){}var b=document.getElementById('cb'),c=document.getElementById('ci'),gn=document.getElementById('gn');if(b)b.value=bg||'#ffffff';if(c)c.value=ink||'#1c2733';if(gn)gn.textContent=(!own&&g)?'สีเริ่มต้นตามแนว “'+N[S.n].g+'”':'';document.querySelectorAll('.sw button').forEach(function(x,k){x.setAttribute('aria-pressed',String(PRE[k][1]===RC.bg&&PRE[k][2]===RC.ink))})}
+function sync(){document.documentElement.style.setProperty('--fs',F+'px');document.querySelectorAll('.fsv').forEach(function(e){e.textContent=F});document.querySelectorAll('.ffs').forEach(function(e){e.value=FF})}
+function fsel(){return '<select class="ff ffs" aria-label="เปลี่ยนฟอนต์" onchange="sf(this.value)"><option value="">ค่าเริ่มต้น</option>'+FONTS.map(function(f){return '<option value="'+f+'"'+(f===FF?' selected':'')+'>'+f.replace('Noto Serif Thai','Noto Serif')+'</option>'}).join('')+'</select>'}
+function szc(){return '<button class="ic" onclick="fs(-2)" aria-label="ลดขนาดตัวอักษร">A−</button><span class="fsv" aria-live="polite" title="ขนาดตัวอักษร">'+F+'</span><button class="ic" onclick="fs(2)" aria-label="เพิ่มขนาดตัวอักษร">A+</button>'}
+function pbtn(){return '<button class="ic" onclick="tcp()" aria-label="ตั้งค่าตัวอักษรและสี">🎨</button>'}
+function pnl(){return '<div class="cp" id="cp" hidden><div class="cpr" style="margin:0 0 12px"><label>ฟอนต์ '+fsel()+'</label><label>ขนาด '+szc()+'</label></div><p class="mut" id="gn" style="margin:0 0 8px"></p><div class="sw">'+PRE.map(function(x,k){return '<button style="background:'+(x[1]||'var(--card)')+';color:'+(x[2]||'var(--ink)')+'" aria-label="'+x[0]+'" title="'+x[0]+'" onclick="pc('+k+')">ก</button>'}).join('')+'</div><div class="cpr"><label>พื้นหลัง <input type="color" id="cb" value="'+(RC.bg||'#ffffff')+'" oninput="pk(\'bg\',this.value)"></label><label>ตัวอักษร <input type="color" id="ci" value="'+(RC.ink||'#1c2733')+'" oninput="pk(\'ink\',this.value)"></label><button class="btn" onclick="theme()">สลับโหมดมืด/สว่าง</button><button class="btn" onclick="pc(0)">คืนค่าตามแนวเรื่อง</button></div></div>'}
+function tcp(){var c=document.getElementById('cp');c.hidden=!c.hidden}
+function pc(k){RC={bg:PRE[k][1],ink:PRE[k][2]};arc()}
+function pk(w,v){var d=document.getElementById(w==='bg'?'ci':'cb');RC[w]=v;if(!RC.bg)RC.bg=document.getElementById('cb').value;if(!RC.ink)RC.ink=document.getElementById('ci').value;arc()}
+arc();
+function fs(d){F=Math.min(28,Math.max(14,F+d));save();sync()}
+function render(){render0();arc();sync()}
+function render0(){
+var h='';bar.style.width='0';if(gl().indexOf(S.g)<0)S.g='ทั้งหมด';
+if(S.v==='home'){
+h='<header class="top" style="position:relative"><h1>Novel</h1><span style="display:flex;gap:8px">'+pbtn()+'<button class="ic" onclick="S.m=!S.m;render()" aria-expanded="'+(!!S.m)+'" aria-label="เมนูฟีเจอร์">☰ เมนู</button></span>'+(S.m?'<div class="menu"><button onclick="go(\'shelf\')">ชั้นนิยายที่ติดตาม ('+fc()+')</button><button onclick="go(\'add\')">+ เพิ่มนิยาย</button><button onclick="theme()">สลับโหมดมืด/สว่าง</button><button onclick="reset()">คืนค่านิยายตัวอย่าง</button></div>':'')+'</header>'+pnl();
+var l=N.map(function(n){return n.id}).indexOf(P.last);
+if(l>-1){var c=P[P.last]||0;h+='<h2>อ่านต่อ</h2><button class="card cont" onclick="go(\'read\','+l+','+c+')"><span class="cover" style="background:'+N[l].c+'">'+esc(N[l].t[0]||'?')+'</span><span><b>'+esc(N[l].t)+'</b><span class="mut">ตอนที่ '+(c+1)+' · '+esc(N[l].ch[c][0])+'</span></span></button>'}
+h+='<input class="search" id="q" type="search" placeholder="ค้นหาชื่อเรื่องหรือนักเขียน" aria-label="ค้นหา" value="'+esc(S.q)+'"><div class="chips">'+gl().map(function(g,i){return '<button class="chip" aria-pressed="'+(g===S.g)+'" onclick="S.g=gl()['+i+'];render()">'+esc(g)+'</button>'}).join('')+'</div><h2 id="hd"></h2><div id="list"></div><p class="note">เนื้อหาทั้งหมดเป็นตัวอย่างที่เขียนขึ้นใหม่เพื่อใช้ทดสอบเว็บ ไม่ใช่งานของนักเขียนจริง ตัวเลขวิวและผู้ติดตามเป็นค่าตัวอย่าง</p>';
+app.innerHTML=h;list();document.getElementById('q').oninput=function(e){S.q=e.target.value;list()};
+}else if(S.v==='novel'){
+var n=N[S.n],c=P[n.id];
+h='<header class="top"><button class="ic" onclick="go(\'home\')">← กลับ</button>'+pbtn()+'</header>'+pnl()+''+card(S.n)+'<button class="nav pri ic" style="width:100%;background:var(--acc);color:var(--on)" onclick="go(\'read\','+S.n+','+(c||0)+')">'+(c==null?'เริ่มอ่านตอนที่ 1':'อ่านต่อตอนที่ '+(c+1))+'</button><button class="btn" style="width:100%;margin-top:8px" onclick="fol()">'+(P['fol_'+n.id]?'กำลังติดตาม ✓':'+ ติดตามนิยายเรื่องนี้')+'</button><h2>สารบัญ</h2>'+n.ch.map(function(x,i){return '<button class="ch'+(c!=null&&i<c?' done':'')+'" onclick="go(\'read\','+S.n+','+i+')"><span>ตอนที่ '+(i+1)+' '+esc(x[0])+'</span><span class="mut">'+Math.max(1,Math.round(x[1].length/700))+' นาที</span></button>'}).join('');
+h+=S.d?'<p class="err">ลบ “'+esc(n.t)+'” ถาวรใช่ไหม</p><div class="row"><button class="btn dng" onclick="del()">ยืนยันลบ</button><button class="btn" onclick="S.d=0;render()">ยกเลิก</button></div>':'<div class="row"><button class="btn dng" onclick="S.d=1;render()">ลบนิยายเรื่องนี้</button></div>';
+app.innerHTML=h;
+}else if(S.v==='shelf'){
+var fi=[];N.forEach(function(n,i){if(P['fol_'+n.id])fi.push(i)});
+h='<header class="top"><button class="ic" onclick="go(\'home\')">← กลับ</button>'+pbtn()+'</header>'+pnl()+'<h2>ชั้นนิยายที่ติดตาม</h2>'+(fi.length?fi.map(function(i){return card(i)}).join(''):'<p class="mut">ยังไม่ได้ติดตามนิยายเรื่องใด เปิดหน้านิยายแล้วกด “+ ติดตามนิยายเรื่องนี้”</p>');
+app.innerHTML=h;
+}else if(S.v==='add'){
+h='<header class="top"><button class="ic" onclick="go(\'home\')">← ยกเลิก</button></header><h2>เพิ่มนิยายใหม่</h2><label class="f" for="f_t">ชื่อเรื่อง *</label><input class="in" id="f_t" maxlength="80"><label class="f" for="f_a">ชื่อนักเขียน</label><input class="in" id="f_a" maxlength="60"><label class="f" for="f_g">หมวด</label><input class="in" id="f_g" list="gs" maxlength="30" placeholder="เช่น แฟนตาซี"><datalist id="gs">'+gg().map(function(g){return '<option value="'+esc(g)+'">'}).join('')+'</datalist><label class="f" for="f_d">เรื่องย่อ</label><input class="in" id="f_d" maxlength="200"><label class="f" for="f_c">ชื่อตอนที่ 1</label><input class="in" id="f_c" maxlength="80"><label class="f" for="f_x">เนื้อหาตอนที่ 1 *</label><textarea class="in" id="f_x"></textarea><p class="err" id="er" role="alert"></p><div class="row"><button class="btn pri" onclick="add()">บันทึกนิยาย</button></div>';
+app.innerHTML=h;
+}else{
+var n=N[S.n],x=n.ch[S.c];
+h='<div class="tools"><button class="ic" onclick="go(\'novel\')" aria-label="สารบัญ">☰</button><span class="t mut">'+esc(n.t)+'</span>'+fsel()+szc()+pbtn()+'</div>'+pnl()+'<article class="read" id="rd"><h2>ตอนที่ '+(S.c+1)+' '+esc(x[0])+'</h2>'+x[1].split('\n').map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+'</article><div class="nav"><button '+(S.c?'':'disabled')+' onclick="go(\'read\','+S.n+','+(S.c-1)+')">← ตอนก่อนหน้า</button><button class="pri" '+(S.c<n.ch.length-1?'':'disabled')+' onclick="go(\'read\','+S.n+','+(S.c+1)+')">ตอนถัดไป →</button></div>';
+app.innerHTML=h;arc();}
+}
+addEventListener('scroll',function(){if(S.v!=='read')return;var d=document.documentElement,m=d.scrollHeight-innerHeight;bar.style.width=(m>0?scrollY/m*100:0)+'%'});
+render();
+</script>
+</body>
+</html>
