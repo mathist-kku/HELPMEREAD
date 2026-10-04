@@ -3,22 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Novel – อ่านนิยายออนไลน์</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600&family=Noto+Serif+Thai:wght@400;600&family=Sarabun:wght@400;600&family=Kanit:wght@400;500&family=Mali:wght@400;600&family=Niramit:wght@400;600&display=swap">
+<meta name="description" content="HELPMEREAD เว็บอ่านนิยายออนไลน์ ค้นหา ติดตาม และอ่านต่อจากตอนที่ค้างไว้">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%96%3C/text%3E%3C/svg%3E">
+<title>HELPMEREAD – อ่านนิยายออนไลน์</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600&family=Noto+Serif+Thai:wght@400;600&display=swap">
 <style>
 :root{--bg:#eef2f1;--card:#fff;--ink:#1c2733;--mut:#5b6b78;--acc:#0f766e;--on:#fff;--hi:#f2b134;--line:#d5dedc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141c22;--card:#1c2830;--ink:#e6edf0;--mut:#9db0ba;--acc:#4fd1c0;--on:#0b1418;--line:#2c3b45}}
 :root[data-theme="dark"]{--bg:#141c22;--card:#1c2830;--ink:#e6edf0;--mut:#9db0ba;--acc:#4fd1c0;--on:#0b1418;--line:#2c3b45}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-size:calc(var(--fs,18px)*.89);line-height:1.6;font-family:var(--ff,Prompt),system-ui,sans-serif}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Prompt,system-ui,sans-serif}
 button,input,textarea,select{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:3px solid var(--hi);outline-offset:2px}
 .wrap{max-width:720px;margin:0 auto;padding:16px}
 header.top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0 12px}
-h1{font-size:1.625em;margin:0;font-weight:600}
-h2{font-size:1.125em;margin:24px 0 10px;font-weight:600}
+h1{font-size:26px;margin:0;font-weight:600}
+h2{font-size:18px;margin:24px 0 10px;font-weight:600}
 .ic{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-height:40px}
 .search{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card)}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0}
@@ -27,42 +30,31 @@ h2{font-size:1.125em;margin:24px 0 10px;font-weight:600}
 .card{display:flex;gap:14px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:0 0 10px}
 .cover{flex:none;width:64px;height:88px;border-radius:6px;display:grid;place-items:center;color:#fff;font:600 34px 'Noto Serif Thai',serif}
 .card b{display:block;font-weight:600}
-.mut{color:var(--mut);font-size:.875em}
+.mut{color:var(--mut);font-size:14px}
 .cont{background:var(--acc);color:var(--on);border-color:var(--acc)}
 .cont .mut{color:inherit;opacity:.85}
 .bar{height:4px;background:var(--hi);width:0;position:fixed;top:0;left:0;z-index:5}
-.read{font-family:var(--ff,'Noto Serif Thai'),serif;line-height:1.95;font-size:var(--fs,18px)}
-.read h2{font-family:var(--ff,Prompt),sans-serif;font-size:1.1em}
+.read{font-family:'Noto Serif Thai',serif;line-height:1.95;font-size:var(--fs,18px)}
+.read h2{font-family:Prompt,sans-serif;font-size:1.1em}
 .read p{margin:0 0 1.1em}
 .nav{display:flex;gap:10px;margin:24px 0}
 .nav button{flex:1;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card)}
 .nav .pri{background:var(--acc);color:var(--on);border-color:var(--acc)}
 .nav button:disabled{opacity:.4;cursor:default}
 .tools{position:sticky;top:env(safe-area-inset-top,0px);display:flex;gap:6px;align-items:center;background:var(--bg);padding:8px 0;z-index:4}
-.tools .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tools .ff{max-width:112px;padding:8px 6px;background:var(--card);border:1px solid var(--line);border-radius:10px;min-height:40px}
+.tools .t{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ch{display:flex;justify-content:space-between;width:100%;text-align:left;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:8px}
 .ch.done{color:var(--mut)}
-.cp{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 12px}
-.cp[hidden]{display:none}
-.cp .ff{max-width:none}
-.fsv{min-width:2.4em;text-align:center;font-weight:600}
-.sw{display:flex;flex-wrap:wrap;gap:8px}
-.sw button{width:44px;height:44px;border-radius:50%;border:2px solid var(--line);font:600 18px 'Noto Serif Thai',serif;padding:0}
-.sw button[aria-pressed="true"]{border-color:var(--hi);box-shadow:0 0 0 2px var(--hi)}
-.cpr{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:12px}
-.cpr label{display:flex;align-items:center;gap:8px}
-.cpr input[type=color]{width:44px;height:36px;padding:0;border:1px solid var(--line);border-radius:8px;background:none}
-.note{font-size:.8125em;color:var(--mut);margin-top:24px}
+.note{font-size:13px;color:var(--mut);margin-top:24px}
 @media (prefers-reduced-motion:no-preference){.card:active,.ch:active{transform:scale(.99)}}
 .f{display:block;margin:12px 0 4px;font-weight:500}
 .in{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card)}
-textarea.in{min-height:180px;font-family:var(--ff,'Noto Serif Thai'),serif;line-height:1.8}
+textarea.in{min-height:180px;font-family:'Noto Serif Thai',serif;line-height:1.8}
 .btn{padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card)}
 .btn.pri{background:var(--acc);color:var(--on);border-color:var(--acc)}
 .btn.dng{border-color:#e5604d;color:#e5604d}
 .row{display:flex;gap:10px;margin-top:16px}.row .btn{flex:1}
-.err{color:#e5604d;font-size:.875em;margin-top:8px}
+.err{color:#e5604d;font-size:14px;margin-top:8px}
 .menu{position:absolute;right:0;top:100%;z-index:6;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:230px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
 .menu button{display:block;width:100%;text-align:left;padding:10px 12px;border:0;background:none;border-radius:8px}
 .menu button:hover{background:var(--bg)}
@@ -104,7 +96,7 @@ var N=[
 ];
 var SEED=JSON.stringify(N),PAL=['#0f766e','#5b3a8c','#b4532a','#1d4e89','#8a3b5f','#4d6b1f'];
 try{var sv=JSON.parse(localStorage.getItem('tn')||'null');if(sv&&sv.length!==undefined)N=sv}catch(e){}
-(function(){var sd=JSON.parse(SEED);try{if(!localStorage.getItem('tv2')){sd.forEach(function(x){if(['cafe','dorm','sea','exam','cat','palace'].indexOf(x.id)>-1&&!N.some(function(n){return n.id===x.id}))N.push(x)});localStorage.setItem('tv2','1');localStorage.setItem('tn',JSON.stringify(N))}}catch(e){}N.forEach(function(n){if(n.v==null){var o=sd.filter(function(x){return x.id===n.id})[0];n.v=o?o.v:0;n.f=o?o.f:0}})})();
+(function(){var sd=JSON.parse(SEED);try{if(!localStorage.getItem('tv2')){sd.forEach(function(x){if(['cafe','dorm','sea','exam','cat','palace'].indexOf(x.id)>-1&&!N.some(function(n){return n.id===x.id}))N.push(x)});localStorage.setItem('tv2','1');localStorage.setItem('tn',JSON.stringify(N))}}catch(e){}N.forEach(function(n){if(n.v==null){var o=sd.filter(function(x){return x.id===n.id})[0];n.v=o?o.v:0;n.f=o?o.f:0}var o2=sd.filter(function(x){return x.id===n.id})[0];if(o2&&n.ch.length<o2.ch.length){for(var k=n.ch.length;k<o2.ch.length;k++)n.ch.push(o2.ch[k]);saveN()}})})();
 function saveN(){try{localStorage.setItem('tn',JSON.stringify(N))}catch(e){}}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 var SP=['ยอดนิยม','ผู้ติดตามมากสุด'],BG=['แฟนตาซี','ไซไฟ','สืบสวน','โรแมนติก','สยองขวัญ','ผจญภัย','ดราม่า','ตลก','ระทึกขวัญ','ย้อนยุค'];
@@ -114,57 +106,48 @@ function fmt(x){x=x||0;return x>=1000?(x/1000).toFixed(1).replace('.0','')+'K':x
 function view(i){N[i].v=(N[i].v||0)+1;saveN()}
 function fc(){return N.filter(function(n){return P['fol_'+n.id]}).length}
 function fol(){var n=N[S.n],k='fol_'+n.id;if(P[k]){delete P[k];n.f=Math.max(0,(n.f||0)-1)}else{P[k]=1;n.f=(n.f||0)+1}save();saveN();render()}
-function add(){var v=function(k){return document.getElementById(k).value.trim()},t=v('f_t'),x=v('f_x');if(!t||!x){document.getElementById('er').textContent='กรุณากรอกชื่อเรื่องและเนื้อหาตอนที่ 1';return}N.push({v:0,f:0,id:'u'+Date.now(),t:t,a:v('f_a')||'ไม่ระบุ',g:v('f_g')||'อื่น ๆ',c:PAL[N.length%PAL.length],d:v('f_d'),ch:[[v('f_c')||'ตอนที่ 1',x]]});saveN();S.g='ทั้งหมด';S.q='';go('home')}
+function add(){var v=function(k){return document.getElementById(k).value.trim()},t=v('f_t'),x=v('f_x');if(!t||!x){document.getElementById('er').textContent='กรุณากรอกชื่อเรื่องและเนื้อหาตอนที่ 1';return}N.push({v:0,f:0,id:'u'+Date.now(),t:t,a:v('f_a')||'ไม่ระบุ',g:v('f_g')||'อื่น ๆ',c:PAL[N.length%PAL.length],d:v('f_d'),ch:[[v('f_c'),x]]});saveN();S.g='ทั้งหมด';S.q='';go('home')}
+function addch(){var n=N[S.n],c=document.getElementById('f_c').value.trim(),x=document.getElementById('f_x').value.trim();if(!x){document.getElementById('er').textContent='กรุณากรอกเนื้อหาตอน';return}n.ch.push([c,x]);saveN();go('novel')}
 function del(){var b=N[S.n];N.splice(S.n,1);if(P.last===b.id)delete P.last;delete P[b.id];saveN();save();go('home')}
 function reset(){N=JSON.parse(SEED);saveN();S.g='ทั้งหมด';S.m=0;render()}
-var S={v:'home',n:0,c:0,q:'',g:'ทั้งหมด',d:0},P={},F=18,FF='',RC={bg:'',ink:''},GP={'โรแมนติก':['#fde8ee','#4a1f2e','#2a1220','#fbd5e0'],'แฟนตาซี':['#efe9fb','#2f2150','#1a1433','#e1d8fb'],'ไซไฟ':['#e3f1fa','#0f2a3d','#0a1624','#bfe6ff'],'สืบสวน':['#e6e4df','#26272b','#15171c','#cfd3dc'],'สยองขวัญ':['#efe3e1','#3a1212','#140808','#e8c9c4'],'ผจญภัย':['#e4f0dc','#23381c','#101f14','#cfe8c3'],'ดราม่า':['#e6e9f0','#232a3a','#161a26','#d4daea'],'ตลก':['#fff4c9','#4a3a00','#2b2410','#ffe9a0'],'ระทึกขวัญ':['#e8e6e6','#2a1a1a','#0f1115','#f0d0b0'],'ย้อนยุค':['#f3e6cc','#4a3320','#231a10','#ecd9b5']},PRE=[['ตามแนวเรื่อง','',''],['ขาว','#ffffff','#1c2733'],['กระดาษ','#f4ecd8','#433422'],['เขียวอ่อน','#e3efe3','#25402c'],['ฟ้าอ่อน','#e4eef7','#1f3347'],['เทา','#d9dcde','#222222'],['เทาเข้ม','#1c2830','#e6edf0'],['น้ำเงินคืน','#0f1b2d','#c9d6ea'],['อำพัน','#1a1410','#e8c48a'],['ดำ','#000000','#d0d0d0']],FONTS=['Prompt','Noto Serif Thai','Sarabun','Kanit','Mali','Niramit'],app=document.getElementById('app'),bar=document.getElementById('bar');
-try{P=JSON.parse(localStorage.getItem('tp')||'{}');F=+localStorage.getItem('tf')||18;var trc=JSON.parse(localStorage.getItem('trc')||'null');if(trc&&typeof trc==='object')RC={bg:trc.bg||'',ink:trc.ink||''};var tff=localStorage.getItem('tff');if(tff&&FONTS.indexOf(tff)>-1)FF=tff;var th=localStorage.getItem('tt');if(th)document.documentElement.dataset.theme=th}catch(e){}
+var S={v:'home',n:0,c:0,q:'',g:'ทั้งหมด',d:0},P={},F=18,app=document.getElementById('app'),bar=document.getElementById('bar');
+try{P=JSON.parse(localStorage.getItem('tp')||'{}');F=+localStorage.getItem('tf')||18;var th=localStorage.getItem('tt');if(th)document.documentElement.dataset.theme=th}catch(e){}
 function save(){try{localStorage.setItem('tp',JSON.stringify(P));localStorage.setItem('tf',F)}catch(e){}}
 function len(n){return n.ch.reduce(function(a,c){return a+c[1].length},0)}
 function mins(n){return Math.max(1,Math.round(len(n)/700))}
 function card(i,cl){var n=N[i];return '<button class="card '+(cl||'')+'" onclick="go(\'novel\','+i+')"><span class="cover" style="background:'+n.c+'">'+esc(n.t[0]||'?')+'</span><span><b>'+esc(n.t)+'</b><span class="mut">'+esc(n.a)+' · '+esc(n.g)+' · '+n.ch.length+' ตอน · อ่านจบราว '+mins(n)+' นาที</span><br><span class="mut">วิว '+fmt(n.v)+' · ผู้ติดตาม '+fmt(n.f)+'</span><br><span class="mut">'+esc(n.d||'')+'</span></span></button>'}
 function list(){var q=S.q.trim(),h='',ix=[];N.forEach(function(n,i){if((S.g==='ทั้งหมด'||SP.indexOf(S.g)>-1||n.g===S.g)&&(!q||(n.t+n.a).indexOf(q)>-1))ix.push(i)});if(S.g===SP[0])ix.sort(function(a,b){return (N[b].v||0)-(N[a].v||0)});else if(S.g===SP[1])ix.sort(function(a,b){return (N[b].f||0)-(N[a].f||0)});ix.forEach(function(i){h+=card(i)});document.getElementById('hd').textContent=SP.indexOf(S.g)>-1?S.g+(S.g===SP[0]?' (เรียงตามจำนวนวิว)':' (เรียงตามจำนวนผู้ติดตาม)'):'นิยายแนะนำ';document.getElementById('list').innerHTML=h||'<p class="mut">ยังไม่มีเรื่องในหมวดนี้ หรือไม่พบเรื่องที่ตรงกัน ลองล้างคำค้นหรือเลือกหมวดอื่น</p>'}
-function theme(){RC={bg:'',ink:''};var r=document.documentElement,d=r.dataset.theme==='dark'||(!r.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches),t=d?'light':'dark';r.dataset.theme=t;try{localStorage.setItem('tt',t)}catch(e){}arc()}
+function theme(){var r=document.documentElement,d=r.dataset.theme==='dark'||(!r.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches),t=d?'light':'dark';r.dataset.theme=t;try{localStorage.setItem('tt',t)}catch(e){}}
 function go(v,n,c){if(v==='novel'&&(S.v==='home'||S.v==='add'||S.v==='shelf'))view(n);S.v=v;S.d=0;S.m=0;if(n!=null)S.n=n;if(c!=null)S.c=c;if(v==='read'){var b=N[S.n];P[b.id]=S.c;P.last=b.id;save()}render();scrollTo(0,0)}
-function sf(v){if(v!==''&&FONTS.indexOf(v)<0)return;FF=v;var r=document.documentElement.style;v?r.setProperty('--ff',"'"+v+"'"):r.removeProperty('--ff');try{localStorage.setItem('tff',v)}catch(e){}sync()}
-sf(FF);
-function gpal(){if(S.v!=='novel'&&S.v!=='read')return null;var n=N[S.n],p=n&&GP[n.g];if(!p)return null;var r=document.documentElement,d=r.dataset.theme==='dark'||(!r.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches);return d?[p[2],p[3]]:[p[0],p[1]]}
-function arc(){var r=document.documentElement.style,ks=['--bg','--ink','--card','--mut','--line'],g=gpal(),own=RC.bg&&RC.ink,bg=RC.bg,ink=RC.ink;if(!own&&g){bg=g[0];ink=g[1]}if(bg&&ink){r.setProperty('--bg',bg);r.setProperty('--ink',ink);r.setProperty('--card','color-mix(in srgb,'+bg+' 88%,'+ink+')');r.setProperty('--mut','color-mix(in srgb,'+ink+' 70%,'+bg+')');r.setProperty('--line','color-mix(in srgb,'+ink+' 22%,'+bg+')')}else ks.forEach(function(k){r.removeProperty(k)});try{localStorage.setItem('trc',JSON.stringify(RC))}catch(e){}var b=document.getElementById('cb'),c=document.getElementById('ci'),gn=document.getElementById('gn');if(b)b.value=bg||'#ffffff';if(c)c.value=ink||'#1c2733';if(gn)gn.textContent=(!own&&g)?'สีเริ่มต้นตามแนว “'+N[S.n].g+'”':'';document.querySelectorAll('.sw button').forEach(function(x,k){x.setAttribute('aria-pressed',String(PRE[k][1]===RC.bg&&PRE[k][2]===RC.ink))})}
-function sync(){document.documentElement.style.setProperty('--fs',F+'px');document.querySelectorAll('.fsv').forEach(function(e){e.textContent=F});document.querySelectorAll('.ffs').forEach(function(e){e.value=FF})}
-function fsel(){return '<select class="ff ffs" aria-label="เปลี่ยนฟอนต์" onchange="sf(this.value)"><option value="">ค่าเริ่มต้น</option>'+FONTS.map(function(f){return '<option value="'+f+'"'+(f===FF?' selected':'')+'>'+f.replace('Noto Serif Thai','Noto Serif')+'</option>'}).join('')+'</select>'}
-function szc(){return '<button class="ic" onclick="fs(-2)" aria-label="ลดขนาดตัวอักษร">A−</button><span class="fsv" aria-live="polite" title="ขนาดตัวอักษร">'+F+'</span><button class="ic" onclick="fs(2)" aria-label="เพิ่มขนาดตัวอักษร">A+</button>'}
-function pbtn(){return '<button class="ic" onclick="tcp()" aria-label="ตั้งค่าตัวอักษรและสี">🎨</button>'}
-function pnl(){return '<div class="cp" id="cp" hidden><div class="cpr" style="margin:0 0 12px"><label>ฟอนต์ '+fsel()+'</label><label>ขนาด '+szc()+'</label></div><p class="mut" id="gn" style="margin:0 0 8px"></p><div class="sw">'+PRE.map(function(x,k){return '<button style="background:'+(x[1]||'var(--card)')+';color:'+(x[2]||'var(--ink)')+'" aria-label="'+x[0]+'" title="'+x[0]+'" onclick="pc('+k+')">ก</button>'}).join('')+'</div><div class="cpr"><label>พื้นหลัง <input type="color" id="cb" value="'+(RC.bg||'#ffffff')+'" oninput="pk(\'bg\',this.value)"></label><label>ตัวอักษร <input type="color" id="ci" value="'+(RC.ink||'#1c2733')+'" oninput="pk(\'ink\',this.value)"></label><button class="btn" onclick="theme()">สลับโหมดมืด/สว่าง</button><button class="btn" onclick="pc(0)">คืนค่าตามแนวเรื่อง</button></div></div>'}
-function tcp(){var c=document.getElementById('cp');c.hidden=!c.hidden}
-function pc(k){RC={bg:PRE[k][1],ink:PRE[k][2]};arc()}
-function pk(w,v){var d=document.getElementById(w==='bg'?'ci':'cb');RC[w]=v;if(!RC.bg)RC.bg=document.getElementById('cb').value;if(!RC.ink)RC.ink=document.getElementById('ci').value;arc()}
-arc();
-function fs(d){F=Math.min(28,Math.max(14,F+d));save();sync()}
-function render(){render0();arc();sync()}
-function render0(){
+function fs(d){F=Math.min(28,Math.max(14,F+d));document.getElementById('rd').style.setProperty('--fs',F+'px');save()}
+function render(){
 var h='';bar.style.width='0';if(gl().indexOf(S.g)<0)S.g='ทั้งหมด';
 if(S.v==='home'){
-h='<header class="top" style="position:relative"><h1>Novel</h1><span style="display:flex;gap:8px">'+pbtn()+'<button class="ic" onclick="S.m=!S.m;render()" aria-expanded="'+(!!S.m)+'" aria-label="เมนูฟีเจอร์">☰ เมนู</button></span>'+(S.m?'<div class="menu"><button onclick="go(\'shelf\')">ชั้นนิยายที่ติดตาม ('+fc()+')</button><button onclick="go(\'add\')">+ เพิ่มนิยาย</button><button onclick="theme()">สลับโหมดมืด/สว่าง</button><button onclick="reset()">คืนค่านิยายตัวอย่าง</button></div>':'')+'</header>'+pnl();
+h='<header class="top" style="position:relative"><h1>HELPMEREAD</h1><button class="ic" onclick="S.m=!S.m;render()" aria-expanded="'+(!!S.m)+'" aria-label="เมนูฟีเจอร์">☰ เมนู</button>'+(S.m?'<div class="menu"><button onclick="go(\'shelf\')">ชั้นนิยายที่ติดตาม ('+fc()+')</button><button onclick="go(\'add\')">+ เพิ่มนิยาย</button><button onclick="theme()">สลับโหมดมืด/สว่าง</button><button onclick="reset()">คืนค่านิยายตัวอย่าง</button></div>':'')+'</header>';
 var l=N.map(function(n){return n.id}).indexOf(P.last);
 if(l>-1){var c=P[P.last]||0;h+='<h2>อ่านต่อ</h2><button class="card cont" onclick="go(\'read\','+l+','+c+')"><span class="cover" style="background:'+N[l].c+'">'+esc(N[l].t[0]||'?')+'</span><span><b>'+esc(N[l].t)+'</b><span class="mut">ตอนที่ '+(c+1)+' · '+esc(N[l].ch[c][0])+'</span></span></button>'}
 h+='<input class="search" id="q" type="search" placeholder="ค้นหาชื่อเรื่องหรือนักเขียน" aria-label="ค้นหา" value="'+esc(S.q)+'"><div class="chips">'+gl().map(function(g,i){return '<button class="chip" aria-pressed="'+(g===S.g)+'" onclick="S.g=gl()['+i+'];render()">'+esc(g)+'</button>'}).join('')+'</div><h2 id="hd"></h2><div id="list"></div><p class="note">เนื้อหาทั้งหมดเป็นตัวอย่างที่เขียนขึ้นใหม่เพื่อใช้ทดสอบเว็บ ไม่ใช่งานของนักเขียนจริง ตัวเลขวิวและผู้ติดตามเป็นค่าตัวอย่าง</p>';
 app.innerHTML=h;list();document.getElementById('q').oninput=function(e){S.q=e.target.value;list()};
 }else if(S.v==='novel'){
 var n=N[S.n],c=P[n.id];
-h='<header class="top"><button class="ic" onclick="go(\'home\')">← กลับ</button>'+pbtn()+'</header>'+pnl()+''+card(S.n)+'<button class="nav pri ic" style="width:100%;background:var(--acc);color:var(--on)" onclick="go(\'read\','+S.n+','+(c||0)+')">'+(c==null?'เริ่มอ่านตอนที่ 1':'อ่านต่อตอนที่ '+(c+1))+'</button><button class="btn" style="width:100%;margin-top:8px" onclick="fol()">'+(P['fol_'+n.id]?'กำลังติดตาม ✓':'+ ติดตามนิยายเรื่องนี้')+'</button><h2>สารบัญ</h2>'+n.ch.map(function(x,i){return '<button class="ch'+(c!=null&&i<c?' done':'')+'" onclick="go(\'read\','+S.n+','+i+')"><span>ตอนที่ '+(i+1)+' '+esc(x[0])+'</span><span class="mut">'+Math.max(1,Math.round(x[1].length/700))+' นาที</span></button>'}).join('');
-h+=S.d?'<p class="err">ลบ “'+esc(n.t)+'” ถาวรใช่ไหม</p><div class="row"><button class="btn dng" onclick="del()">ยืนยันลบ</button><button class="btn" onclick="S.d=0;render()">ยกเลิก</button></div>':'<div class="row"><button class="btn dng" onclick="S.d=1;render()">ลบนิยายเรื่องนี้</button></div>';
+h='<header class="top"><button class="ic" onclick="go(\'home\')">← กลับ</button></header>'+card(S.n)+'<button class="nav pri ic" style="width:100%;background:var(--acc);color:var(--on)" onclick="go(\'read\','+S.n+','+(c||0)+')">'+(c==null?'เริ่มอ่านตอนที่ 1':'อ่านต่อตอนที่ '+(c+1))+'</button><button class="btn" style="width:100%;margin-top:8px" onclick="fol()">'+(P['fol_'+n.id]?'กำลังติดตาม ✓':'+ ติดตามนิยายเรื่องนี้')+'</button><h2>สารบัญ</h2>'+n.ch.map(function(x,i){return '<button class="ch'+(c!=null&&i<c?' done':'')+'" onclick="go(\'read\','+S.n+','+i+')"><span>ตอนที่ '+(i+1)+' '+esc(x[0])+'</span><span class="mut">'+Math.max(1,Math.round(x[1].length/700))+' นาที</span></button>'}).join('');
+h+='<div class="row"><button class="btn" onclick="go(\'addch\')">+ เพิ่มตอนใหม่</button></div>';h+=S.d?'<p class="err">ลบ “'+esc(n.t)+'” ถาวรใช่ไหม</p><div class="row"><button class="btn dng" onclick="del()">ยืนยันลบ</button><button class="btn" onclick="S.d=0;render()">ยกเลิก</button></div>':'<div class="row"><button class="btn dng" onclick="S.d=1;render()">ลบนิยายเรื่องนี้</button></div>';
 app.innerHTML=h;
 }else if(S.v==='shelf'){
 var fi=[];N.forEach(function(n,i){if(P['fol_'+n.id])fi.push(i)});
-h='<header class="top"><button class="ic" onclick="go(\'home\')">← กลับ</button>'+pbtn()+'</header>'+pnl()+'<h2>ชั้นนิยายที่ติดตาม</h2>'+(fi.length?fi.map(function(i){return card(i)}).join(''):'<p class="mut">ยังไม่ได้ติดตามนิยายเรื่องใด เปิดหน้านิยายแล้วกด “+ ติดตามนิยายเรื่องนี้”</p>');
+h='<header class="top"><button class="ic" onclick="go(\'home\')">← กลับ</button></header><h2>ชั้นนิยายที่ติดตาม</h2>'+(fi.length?fi.map(function(i){return card(i)}).join(''):'<p class="mut">ยังไม่ได้ติดตามนิยายเรื่องใด เปิดหน้านิยายแล้วกด “+ ติดตามนิยายเรื่องนี้”</p>');
+app.innerHTML=h;
+}else if(S.v==='addch'){
+var n=N[S.n];
+h='<header class="top"><button class="ic" onclick="go(\'novel\')">← ยกเลิก</button></header><h2>เพิ่มตอนใหม่ใน “'+esc(n.t)+'”</h2><p class="mut">จะเป็นตอนที่ '+(n.ch.length+1)+'</p><label class="f" for="f_c">ชื่อตอน</label><input class="in" id="f_c" maxlength="80"><label class="f" for="f_x">เนื้อหาตอน *</label><textarea class="in" id="f_x"></textarea><p class="err" id="er" role="alert"></p><div class="row"><button class="btn pri" onclick="addch()">บันทึกตอน</button></div>';
 app.innerHTML=h;
 }else if(S.v==='add'){
 h='<header class="top"><button class="ic" onclick="go(\'home\')">← ยกเลิก</button></header><h2>เพิ่มนิยายใหม่</h2><label class="f" for="f_t">ชื่อเรื่อง *</label><input class="in" id="f_t" maxlength="80"><label class="f" for="f_a">ชื่อนักเขียน</label><input class="in" id="f_a" maxlength="60"><label class="f" for="f_g">หมวด</label><input class="in" id="f_g" list="gs" maxlength="30" placeholder="เช่น แฟนตาซี"><datalist id="gs">'+gg().map(function(g){return '<option value="'+esc(g)+'">'}).join('')+'</datalist><label class="f" for="f_d">เรื่องย่อ</label><input class="in" id="f_d" maxlength="200"><label class="f" for="f_c">ชื่อตอนที่ 1</label><input class="in" id="f_c" maxlength="80"><label class="f" for="f_x">เนื้อหาตอนที่ 1 *</label><textarea class="in" id="f_x"></textarea><p class="err" id="er" role="alert"></p><div class="row"><button class="btn pri" onclick="add()">บันทึกนิยาย</button></div>';
 app.innerHTML=h;
 }else{
 var n=N[S.n],x=n.ch[S.c];
-h='<div class="tools"><button class="ic" onclick="go(\'novel\')" aria-label="สารบัญ">☰</button><span class="t mut">'+esc(n.t)+'</span>'+fsel()+szc()+pbtn()+'</div>'+pnl()+'<article class="read" id="rd"><h2>ตอนที่ '+(S.c+1)+' '+esc(x[0])+'</h2>'+x[1].split('\n').map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+'</article><div class="nav"><button '+(S.c?'':'disabled')+' onclick="go(\'read\','+S.n+','+(S.c-1)+')">← ตอนก่อนหน้า</button><button class="pri" '+(S.c<n.ch.length-1?'':'disabled')+' onclick="go(\'read\','+S.n+','+(S.c+1)+')">ตอนถัดไป →</button></div>';
-app.innerHTML=h;arc();}
+h='<div class="tools"><button class="ic" onclick="go(\'novel\')" aria-label="สารบัญ">☰</button><span class="t mut">'+esc(n.t)+'</span><button class="ic" onclick="fs(-2)" aria-label="ลดขนาดตัวอักษร">A−</button><button class="ic" onclick="fs(2)" aria-label="เพิ่มขนาดตัวอักษร">A+</button><button class="ic" onclick="theme()" aria-label="สลับโหมดมืด">◐</button></div><article class="read" id="rd" style="--fs:'+F+'px"><h2>ตอนที่ '+(S.c+1)+' '+esc(x[0])+'</h2>'+x[1].split('\n').map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+'</article><div class="nav"><button '+(S.c?'':'disabled')+' onclick="go(\'read\','+S.n+','+(S.c-1)+')">← ตอนก่อนหน้า</button><button class="pri" '+(S.c<n.ch.length-1?'':'disabled')+' onclick="go(\'read\','+S.n+','+(S.c+1)+')">ตอนถัดไป →</button></div>';
+app.innerHTML=h;}
 }
 addEventListener('scroll',function(){if(S.v!=='read')return;var d=document.documentElement,m=d.scrollHeight-innerHeight;bar.style.width=(m>0?scrollY/m*100:0)+'%'});
 render();
